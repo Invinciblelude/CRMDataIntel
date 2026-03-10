@@ -483,15 +483,31 @@
   </div>
 </section>
 
-<section class="cta-section">
+<section class="cta-section" id="contact">
   <div class="container">
     <h2>See your score in 24 hours</h2>
     <p>Send us your info and we'll audit your database for free. No strings.</p>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="pages/start.html#start" class="btn btn-primary" style="font-size: 16px; padding: 18px 36px;">Get Your Free Assessment</a>
-      <a href="pages/audit-tool.html" class="btn btn-ghost">Or Try the Audit Tool Now</a>
+    <div style="max-width: 480px; margin: 0 auto;">
+      <form action="https://formspree.io/f/xkoqjvrz" method="POST" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <input type="text" name="name" placeholder="Your name" required style="padding: 14px 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: rgba(255,255,255,0.06); color: #fff; font-size: 14px; font-family: inherit;">
+        <input type="text" name="business" placeholder="Business name" required style="padding: 14px 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: rgba(255,255,255,0.06); color: #fff; font-size: 14px; font-family: inherit;">
+        <input type="email" name="email" placeholder="Email" required style="grid-column: 1 / -1; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: rgba(255,255,255,0.06); color: #fff; font-size: 14px; font-family: inherit;">
+        <input type="tel" name="phone" placeholder="Phone (optional)" style="padding: 14px 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: rgba(255,255,255,0.06); color: #fff; font-size: 14px; font-family: inherit;">
+        <select name="industry" style="padding: 14px 16px; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: rgba(255,255,255,0.06); color: #94a3b8; font-size: 14px; font-family: inherit;">
+          <option value="">Your industry</option>
+          <option value="dental">Dental / Medical</option>
+          <option value="hvac">HVAC / Trades</option>
+          <option value="staffing">Staffing / Recruiting</option>
+          <option value="manufacturing">Manufacturing</option>
+          <option value="distribution">Distribution</option>
+          <option value="logistics">Logistics / Freight</option>
+          <option value="construction">Construction</option>
+          <option value="other">Other</option>
+        </select>
+        <button type="submit" class="btn btn-primary" style="grid-column: 1 / -1; font-family: inherit; font-size: 16px; padding: 16px;">Get My Free Data Health Score</button>
+      </form>
     </div>
-    <p style="font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 20px;">All data handled under NDA &bull; No changes to your systems &bull; No commitment</p>
+    <p style="font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 16px;">All data handled under NDA &bull; No changes to your systems &bull; No commitment</p>
   </div>
 </section>
 
