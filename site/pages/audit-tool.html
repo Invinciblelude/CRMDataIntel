@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Instant CRM Audit — CRM Data Intelligence</title>
+<meta name="description" content="Paste your CRM data and get an instant health score. No signup. No upload. 100% in your browser.">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .tool-hero {
+    padding: 100px 0 40px;
+    background: linear-gradient(135deg, var(--navy) 0%, #162544 100%);
+    color: var(--white); text-align: center;
+  }
+  .tool-hero h1 { font-size: 36px; font-weight: 900; margin-bottom: 12px; letter-spacing: -1px; }
+  .tool-hero p { font-size: 15px; color: var(--gray); max-width: 560px; margin: 0 auto 8px; }
+  .tool-hero .trust { font-size: 12px; color: var(--slate-light); margin-top: 16px; }
+
+  .tool-section { padding: 48px 0; }
+
+  .input-area {
+    background: var(--bg); border: 2px dashed var(--border); border-radius: 12px;
+    padding: 32px; margin-bottom: 24px; position: relative;
+  }
+
+  .input-area.drag-over { border-color: var(--blue); background: #eff6ff; }
+
+  .input-area textarea {
+    width: 100%; min-height: 200px; border: none; background: transparent;
+    font-family: 'Courier New', monospace; font-size: 12px; color: var(--text);
+    resize: vertical; outline: none;
+  }
+
+  .input-area .placeholder-text {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; pointer-events: none; color: var(--gray); font-size: 14px;
+    transition: opacity 0.2s;
+  }
+
+  .input-area .placeholder-text.hidden { opacity: 0; }
+
+  .format-hint {
+    font-size: 12px; color: var(--slate-light); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .action-bar { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; align-items: center; }
+
+  .action-bar .btn { font-family: inherit; cursor: pointer; }
+
+  #loadSample {
+    background: transparent; color: var(--blue); border: 1px solid var(--blue);
+    padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    cursor: pointer; font-family: inherit;
+  }
+
+  .file-input-wrap {
+    position: relative; overflow: hidden; display: inline-block;
+  }
+  .file-input-wrap input[type="file"] {
+    position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;
+  }
+
+  /* RESULTS */
+  #results { display: none; }
+
+  .score-hero {
+    text-align: center; padding: 40px; border-radius: 12px; margin-bottom: 32px;
+  }
+  .score-hero.grade-a { background: linear-gradient(135deg, #065f46 0%, #064e3b 100%); color: #fff; }
+  .score-hero.grade-b { background: linear-gradient(135deg, #1e40af 0%, #1e3a5f 100%); color: #fff; }
+  .score-hero.grade-c { background: linear-gradient(135deg, #92400e 0%, #78350f 100%); color: #fff; }
+  .score-hero.grade-d { background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%); color: #fff; }
+  .score-hero.grade-f { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); color: #fff; }
+
+  .score-hero .score-num { font-size: 80px; font-weight: 900; }
+  .score-hero .score-grade { font-size: 24px; font-weight: 700; opacity: 0.8; }
+  .score-hero .score-sub { font-size: 14px; opacity: 0.6; margin-top: 8px; }
+
+  .findings-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px; margin-bottom: 32px;
+  }
+
+  .finding-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px;
+  }
+
+  .finding-card h4 {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--slate-light); margin-bottom: 12px;
+  }
+
+  .bar-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 13px;
+  }
+  .bar-label { width: 120px; color: var(--slate); flex-shrink: 0; }
+  .bar-track { flex: 1; height: 8px; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+  .bar-pct { width: 50px; text-align: right; font-weight: 700; font-size: 13px; }
+
+  .issue-list { list-style: none; }
+  .issue-list li {
+    padding: 8px 0 8px 24px; border-bottom: 1px solid #f1f5f9;
+    font-size: 13px; color: var(--slate); position: relative;
+  }
+  .issue-list li::before {
+    content: "!"; position: absolute; left: 0; top: 8px;
+    width: 16px; height: 16px; line-height: 16px; text-align: center;
+    background: var(--red); color: #fff; border-radius: 50%;
+    font-size: 10px; font-weight: 900;
+  }
+
+  .rec-list { list-style: none; }
+  .rec-list li {
+    padding: 8px 0 8px 24px; font-size: 13px; color: var(--text);
+    position: relative; border-bottom: 1px solid #f1f5f9;
+  }
+  .rec-list li::before {
+    content: "→"; position: absolute; left: 0;
+    color: var(--blue); font-weight: 700;
+  }
+
+  .results-cta {
+    background: var(--navy); color: var(--white); border-radius: 12px;
+    padding: 40px; text-align: center; margin-top: 32px;
+  }
+  .results-cta h3 { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+  .results-cta p { color: var(--gray); margin-bottom: 20px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="nav-brand">CRM<span>Data</span>Intel</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="demo.html">Demo</a></li>
+      <li><a href="audit-tool.html">Free Audit Tool</a></li>
+      <li><a href="../index.html#pricing">Pricing</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Free Assessment</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="tool-hero">
+  <div class="container">
+    <h1>Instant CRM Data Audit</h1>
+    <p>Paste your data or upload a CSV. Get a health score, field completeness breakdown, and recommendations in seconds.</p>
+    <p class="trust">100% client-side. Your data never leaves your browser. No signup required.</p>
+  </div>
+</section>
+
+<section class="tool-section">
+  <div class="container-narrow">
+
+    <p class="format-hint">Paste CSV data with headers (first_name, last_name, email, phone, job_title, company, industry, state, etc.) or upload a file.</p>
+
+    <div class="input-area" id="dropZone">
+      <div class="placeholder-text" id="placeholder">Paste your CSV data here, or drag &amp; drop a .csv file<br><br>Or click "Load Sample Data" to try it out</div>
+      <textarea id="csvInput" spellcheck="false"></textarea>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn btn-primary" onclick="runAudit()" style="font-family:inherit">Audit My Data</button>
+      <button id="loadSample" onclick="loadSample()">Load Sample Data</button>
+      <div class="file-input-wrap">
+        <button id="loadSample" style="pointer-events:none">Upload CSV File</button>
+        <input type="file" accept=".csv" onchange="handleFile(event)">
+      </div>
+      <span style="font-size:12px; color:var(--gray); margin-left: auto;" id="recordCount"></span>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results">
+      <div class="score-hero" id="scoreHero">
+        <div class="score-num" id="scoreNum">--</div>
+        <div class="score-grade" id="scoreGrade">Grade: --</div>
+        <div class="score-sub" id="scoreSub">-- records analyzed</div>
+      </div>
+
+      <div class="findings-grid" id="findingsGrid"></div>
+
+      <div class="finding-card" id="issuesCard" style="margin-bottom: 16px;">
+        <h4>Issues Found</h4>
+        <ul class="issue-list" id="issuesList"></ul>
+      </div>
+
+      <div class="finding-card" id="recsCard">
+        <h4>Recommendations</h4>
+        <ul class="rec-list" id="recsList"></ul>
+      </div>
+
+      <div class="results-cta">
+        <h3>Want the full cleanup?</h3>
+        <p>This audit is just step 1. We also clean, deduplicate, enrich, and score your data — ready for your reps to work.</p>
+        <a href="../index.html#contact" class="btn btn-primary">Get Your Full Assessment</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <span>&copy; 2026 CRM Data Intelligence. All rights reserved.</span>
+      <span><a href="../index.html">Home</a> &middot; <a href="demo.html">Demo</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SAMPLE_CSV = `first_name,last_name,email,phone,job_title,company,industry,state
+James,Smith,james.smith@acmemanufacturing.com,(415) 555-1234,VP Sales,Acme Manufacturing,Manufacturing,CA
+James,Smith,james_smith@acmemanufacturing.com,4155551234,V.P. Sales,Acme Manufacturing Inc.,Mfg,California
+,Johnson,N/A,000-000-0000,sales manager,CRYOBUILD SYSTEMS,MANUFACTURING,
+Patricia,Williams,pwilliams@gmail.com,(832) 555-7890,Director Of Operations,Atlas Logistics Group,Warehousing & Logistics,TX
+Robert,Brown,robert.brown@titanconcrete.com,8325559876,CEO,Titan Concrete Supply,construction,Texas
+Jennifer,Garcia,,,Plant Manger,pacific steel works,,WA
+Robert,Brown,r.brown@titanconcrete.com,(832) 555-9876,Chief Executive Officer,Titan Concrete,Construction,TX
+Michael,Davis,michael.davis@summitenergy.com,(303) 555-4567,Maintenance Mgr,Summit Energy Solutions,energy,CO
+Linda,Martinez,linda.martinez@proflowsupply.com,3035554567ext2,purchasing manager,ProFlow Plumbing Supply  ,Wholesale,Nevada
+David,Anderson,danderson,(602) 555-3210,SALES MANAGER,Apex Industrial Services,N/A,AZ
+Elizabeth,Taylor,,,(none),Delta Fabrication Co,Manufacturing,OH
+William,Moore,w.moore@ironcladsecurity.com,(555) 123-4567,IT Director,Ironclad Security Systems,Security,GA
+,,bad@email,5551234,accountant,,,
+Susan,Clark,susan.clark@novatechsolutions.com,(720) 555-8901,Marketing Manager,NovaTech Solutions,Tech,CO
+Richard,Lewis,richard.lewis@pacificsteelworks.com,(206) 555-2345,ceo,Pacific Steel Works,MANUFACTURING,Washington
+Karen,White,,,Sales Rep,Greenfield Farms LLC,Agriculture,MN
+Thomas,Harris,thomas.harris@bluelineelectrical.com,(480) 555-6789,HR Manager,BlueLine Electrical,Electrical,AZ
+Sarah,Sanchez,sarah@gmail.com,(312) 555-4321,buyer,Metro Distribution Inc,logistics,IL
+Charles,Clark,charles.clark@sunpeaksolar.com,N/A,Owner,SunPeak Solar,Energy,OR
+Jessica,Ramirez,jessica.ramirez@falconaerospace.com,(713) 555-8765,Project Engineer,Falcon Aerospace,Aerospace,TX`;
+
+const textarea = document.getElementById('csvInput');
+const placeholder = document.getElementById('placeholder');
+
+textarea.addEventListener('input', () => {
+  placeholder.classList.toggle('hidden', textarea.value.length > 0);
+  updateCount();
+});
+
+function updateCount() {
+  const lines = textarea.value.trim().split('\\n').filter(l => l.trim());
+  const count = Math.max(0, lines.length - 1);
+  document.getElementById('recordCount').textContent = count > 0 ? count + ' records detected' : '';
+}
+
+function loadSample() {
+  textarea.value = SAMPLE_CSV;
+  placeholder.classList.add('hidden');
+  updateCount();
+}
+
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    textarea.value = ev.target.result;
+    placeholder.classList.add('hidden');
+    updateCount();
+  };
+  reader.readAsText(file);
+}
+
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('drag-over'); });
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (ev) => { textarea.value = ev.target.result; placeholder.classList.add('hidden'); updateCount(); };
+    reader.readAsText(file);
+  }
+});
+
+function parseCSV(text) {
+  const lines = text.trim().split('\\n').map(l => l.trim()).filter(l => l);
+  if (lines.length < 2) return { headers: [], records: [] };
+  const headers = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/[^a-z0-9_]/g, '_'));
+  const records = [];
+  for (let i = 1; i < lines.length; i++) {
+    const vals = lines[i].split(',');
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h] = (vals[idx] || '').trim(); });
+    records.push(obj);
+  }
+  return { headers, records };
+}
+
+function isEmpty(v) {
+  if (!v) return true;
+  const low = v.toLowerCase().trim();
+  return ['', 'n/a', 'unknown', 'none', '-', 'null', '(none)', '(empty)'].includes(low);
+}
+
+function isValidEmail(v) {
+  if (isEmpty(v)) return false;
+  return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(v.trim());
+}
+
+function isPersonalEmail(v) {
+  if (!isValidEmail(v)) return false;
+  return /gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|aol\.com/i.test(v);
+}
+
+function isValidPhone(v) {
+  if (isEmpty(v)) return false;
+  const digits = v.replace(/\\D/g, '');
+  if (['0000000000', '0000000'].includes(digits)) return false;
+  return digits.length >= 7 && digits.length <= 15;
+}
+
+function runAudit() {
+  const text = textarea.value;
+  if (!text.trim()) { alert('Please paste CSV data or load sample data first.'); return; }
+
+  const { headers, records } = parseCSV(text);
+  if (records.length === 0) { alert('No records found. Make sure data has a header row.'); return; }
+
+  const total = records.length;
+  const completeness = {};
+  headers.forEach(h => {
+    const filled = records.filter(r => !isEmpty(r[h])).length;
+    completeness[h] = { filled, missing: total - filled, pct: Math.round(filled / total * 1000) / 10 };
+  });
+
+  const emailField = headers.find(h => h.includes('email'));
+  const phoneField = headers.find(h => h.includes('phone'));
+  const titleField = headers.find(h => h.includes('title'));
+  const companyField = headers.find(h => h.includes('company') || h.includes('account'));
+  const firstField = headers.find(h => h.includes('first'));
+  const lastField = headers.find(h => h.includes('last'));
+  const industryField = headers.find(h => h.includes('industry'));
+  const stateField = headers.find(h => h.includes('state') || h.includes('region'));
+
+  let validEmails = 0, personalEmails = 0, validPhones = 0;
+  if (emailField) {
+    validEmails = records.filter(r => isValidEmail(r[emailField])).length;
+    personalEmails = records.filter(r => isPersonalEmail(r[emailField])).length;
+  }
+  if (phoneField) validPhones = records.filter(r => isValidPhone(r[phoneField])).length;
+
+  let emailDupes = 0;
+  if (emailField) {
+    const emailMap = {};
+    records.forEach(r => {
+      const e = (r[emailField] || '').toLowerCase().trim();
+      if (e && e.includes('@')) { emailMap[e] = (emailMap[e] || 0) + 1; }
+    });
+    emailDupes = Object.values(emailMap).filter(c => c > 1).reduce((a, c) => a + c, 0);
+  }
+
+  let nameDupes = 0;
+  if (lastField && companyField) {
+    const nameMap = {};
+    records.forEach(r => {
+      const key = ((r[firstField] || '') + '|' + (r[lastField] || '') + '|' + (r[companyField] || '')).toLowerCase();
+      if (r[lastField]) nameMap[key] = (nameMap[key] || 0) + 1;
+    });
+    nameDupes = Object.values(nameMap).filter(c => c > 1).reduce((a, c) => a + c, 0);
+  }
+
+  let titleVariants = 0;
+  if (titleField) {
+    const titles = new Set(records.map(r => (r[titleField] || '').trim()).filter(t => !isEmpty(t)));
+    titleVariants = titles.size;
+  }
+
+  let industryVariants = 0;
+  if (industryField) {
+    const inds = new Set(records.map(r => (r[industryField] || '').trim().toLowerCase()).filter(i => !isEmpty(i)));
+    industryVariants = inds.size;
+  }
+
+  // Score
+  let score = 100;
+  if (emailField) {
+    const emailPct = validEmails / total * 100;
+    score -= Math.max(0, (80 - emailPct)) * 0.5;
+    if (personalEmails / Math.max(validEmails, 1) > 0.2) score -= 3;
+  } else { score -= 15; }
+
+  if (phoneField) {
+    const phonePct = validPhones / total * 100;
+    score -= Math.max(0, (70 - phonePct)) * 0.3;
+  } else { score -= 10; }
+
+  const dupPct = Math.max(emailDupes, nameDupes) / total * 100;
+  score -= Math.min(dupPct * 0.5, 15);
+
+  if (titleVariants > total * 0.15) score -= 5;
+
+  headers.forEach(h => {
+    if (completeness[h].pct < 70) score -= 2;
+  });
+
+  score = Math.round(Math.max(0, Math.min(100, score)) * 10) / 10;
+  let grade = 'F';
+  if (score >= 90) grade = 'A';
+  else if (score >= 80) grade = 'B';
+  else if (score >= 70) grade = 'C';
+  else if (score >= 60) grade = 'D';
+
+  // Render
+  document.getElementById('results').style.display = 'block';
+  const hero = document.getElementById('scoreHero');
+  hero.className = 'score-hero grade-' + grade.toLowerCase();
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('scoreGrade').textContent = 'Grade: ' + grade;
+  document.getElementById('scoreSub').textContent = total + ' records analyzed across ' + headers.length + ' fields';
+
+  // Findings
+  const fg = document.getElementById('findingsGrid');
+  fg.innerHTML = '';
+
+  function addFinding(title, rows) {
+    const card = document.createElement('div');
+    card.className = 'finding-card';
+    let html = '<h4>' + title + '</h4>';
+    rows.forEach(r => {
+      const color = r.pct >= 90 ? '#16a34a' : r.pct >= 70 ? '#f59e0b' : '#dc2626';
+      html += '<div class="bar-row">' +
+        '<span class="bar-label">' + r.label + '</span>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + r.pct + '%;background:' + color + '"></div></div>' +
+        '<span class="bar-pct" style="color:' + color + '">' + r.pct + '%</span></div>';
+    });
+    card.innerHTML = html;
+    fg.appendChild(card);
+  }
+
+  const compRows = headers.filter(h => !['record_id', 'id', 'created_date', 'last_activity_date', 'notes', 'owner'].includes(h))
+    .map(h => ({ label: h.replace(/_/g, ' '), pct: completeness[h].pct }));
+
+  addFinding('Field Completeness', compRows);
+
+  const qualRows = [];
+  if (emailField) qualRows.push({ label: 'Valid emails', pct: Math.round(validEmails / total * 1000) / 10 });
+  if (phoneField) qualRows.push({ label: 'Valid phones', pct: Math.round(validPhones / total * 1000) / 10 });
+  qualRows.push({ label: 'Non-duplicate', pct: Math.round((total - Math.max(emailDupes, nameDupes)) / total * 1000) / 10 });
+  addFinding('Data Quality', qualRows);
+
+  // Issues
+  const il = document.getElementById('issuesList');
+  il.innerHTML = '';
+  const issues = [];
+  if (emailField && validEmails / total < 0.85) issues.push((total - validEmails) + ' records have missing or invalid emails (' + Math.round(validEmails / total * 100) + '% valid)');
+  if (phoneField && validPhones / total < 0.85) issues.push((total - validPhones) + ' records have missing or invalid phones (' + Math.round(validPhones / total * 100) + '% valid)');
+  if (emailDupes > 0) issues.push(emailDupes + ' records share duplicate email addresses');
+  if (nameDupes > 0) issues.push(nameDupes + ' records share duplicate name + company combinations');
+  if (personalEmails > 0) issues.push(personalEmails + ' records use personal emails (gmail, yahoo, etc.) instead of work emails');
+  if (titleVariants > 20) issues.push(titleVariants + ' unique job title variants found (should be 15-20 standardized roles)');
+  if (industryVariants > 15) issues.push(industryVariants + ' different industry values — needs normalization');
+  headers.forEach(h => {
+    if (completeness[h].pct < 50 && !['notes', 'owner', 'linkedin_url', 'annual_revenue', 'employees'].includes(h))
+      issues.push(h.replace(/_/g, ' ') + ' is only ' + completeness[h].pct + '% complete (' + completeness[h].missing + ' missing)');
+  });
+  if (issues.length === 0) issues.push('No critical issues detected — your data is in good shape!');
+  issues.forEach(issue => { const li = document.createElement('li'); li.textContent = issue; il.appendChild(li); });
+
+  // Recommendations
+  const rl = document.getElementById('recsList');
+  rl.innerHTML = '';
+  const recs = [];
+  if (emailDupes > 0 || nameDupes > 0) recs.push('Deduplicate records using email + name/company matching — could remove ' + Math.max(emailDupes, nameDupes) + '+ duplicates');
+  if (emailField && validEmails / total < 0.90) recs.push('Enrich missing emails using AI + data providers to reach 90%+ coverage');
+  if (phoneField && validPhones / total < 0.90) recs.push('Enrich missing phone numbers and direct dials');
+  if (titleVariants > 15) recs.push('Standardize ' + titleVariants + ' job title variants into ~15-20 role/seniority buckets');
+  if (industryVariants > 10) recs.push('Normalize industry values into a consistent taxonomy');
+  if (stateField) {
+    const stateIssues = records.filter(r => r[stateField] && r[stateField].length > 2).length;
+    if (stateIssues > 0) recs.push('Standardize state values to 2-letter codes (' + stateIssues + ' records have full names or mixed formats)');
+  }
+  recs.push('Implement lead scoring based on ICP fit, seniority, and data completeness');
+  recs.push('Set up ongoing monitoring to prevent data decay (70% degrades within 12 months)');
+  recs.forEach(rec => { const li = document.createElement('li'); li.textContent = rec; rl.appendChild(li); });
+
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Demo — CRM Data Intelligence</title>
+<meta name="description" content="See exactly what we do: watch messy CRM data get cleaned, deduplicated, enriched, and scored in real time.">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .demo-hero {
+    padding: 100px 0 60px;
+    background: linear-gradient(135deg, var(--navy) 0%, #162544 100%);
+    color: var(--white);
+    text-align: center;
+  }
+  .demo-hero h1 { font-size: 40px; font-weight: 900; margin-bottom: 12px; letter-spacing: -1px; }
+  .demo-hero p { font-size: 16px; color: var(--gray); max-width: 600px; margin: 0 auto 32px; }
+
+  .step-section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+  .step-section:nth-child(even) { background: var(--bg); }
+
+  .step-header {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
+  }
+  .step-badge {
+    width: 48px; height: 48px; line-height: 48px; text-align: center;
+    background: var(--navy); color: var(--white); border-radius: 50%;
+    font-size: 18px; font-weight: 900; flex-shrink: 0;
+  }
+  .step-header h2 { font-size: 24px; font-weight: 800; color: var(--navy); }
+  .step-header p { font-size: 14px; color: var(--slate); margin-top: 4px; }
+
+  .data-table-wrap {
+    overflow-x: auto; border-radius: 10px; border: 1px solid var(--border);
+    margin-bottom: 16px; max-height: 400px; overflow-y: auto;
+  }
+  .data-table {
+    width: 100%; border-collapse: collapse; font-size: 12px; white-space: nowrap;
+  }
+  .data-table th {
+    background: var(--navy); color: var(--white); padding: 10px 14px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+    position: sticky; top: 0; z-index: 2;
+  }
+  .data-table td {
+    padding: 8px 14px; border-bottom: 1px solid #f1f5f9;
+  }
+  .data-table tr:hover { background: #f0f9ff; }
+
+  .cell-bad { background: #fef2f2; color: var(--red); font-weight: 600; }
+  .cell-good { background: #f0fdf4; color: var(--green); font-weight: 600; }
+  .cell-empty { background: #fefce8; color: #a16207; font-style: italic; }
+  .cell-dup { background: #fdf2f8; color: #be185d; }
+  .cell-fixed { background: #f0fdf4; color: var(--green); }
+  .cell-new { background: #eff6ff; color: var(--blue); font-weight: 600; }
+
+  .legend {
+    display: flex; gap: 20px; flex-wrap: wrap; font-size: 12px;
+    margin-bottom: 24px; color: var(--slate);
+  }
+  .legend span {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .legend .dot {
+    width: 12px; height: 12px; border-radius: 3px; display: inline-block;
+  }
+
+  .insight-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-top: 24px;
+  }
+  .insight-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; text-align: center;
+  }
+  .insight-card .ic-num { font-size: 32px; font-weight: 900; }
+  .insight-card .ic-label { font-size: 12px; color: var(--slate-light); margin-top: 4px; }
+
+  .download-bar {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;
+  }
+  .dl-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 8px; font-size: 13px;
+    font-weight: 600; text-decoration: none; border: 1px solid var(--border);
+    color: var(--navy); background: var(--white); transition: all 0.2s;
+  }
+  .dl-btn:hover { background: var(--bg); border-color: var(--navy); }
+
+  .comparison-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+
+  .cta-demo {
+    background: linear-gradient(135deg, var(--navy) 0%, #162544 100%);
+    color: var(--white); text-align: center; padding: 60px 24px; border-radius: 12px;
+    margin-top: 48px;
+  }
+  .cta-demo h3 { font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+  .cta-demo p { color: var(--gray); margin-bottom: 24px; font-size: 15px; }
+
+  @media (max-width: 768px) {
+    .comparison-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="../index.html" class="nav-brand">CRM<span>Data</span>Intel</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="demo.html">Demo</a></li>
+      <li><a href="audit-tool.html">Free Audit Tool</a></li>
+      <li><a href="../index.html#pricing">Pricing</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Free Assessment</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="demo-hero">
+  <div class="container">
+    <h1>See What We Do — Live</h1>
+    <p>Watch real CRM data go from messy to money-ready. Every step below uses the same tools we run on your data.</p>
+    <a href="audit-tool.html" class="btn btn-primary">Try It On Your Own Data</a>
+  </div>
+</section>
+
+<!-- STEP 1: RAW DATA -->
+<div class="step-section">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-badge">1</div>
+      <div>
+        <h2>The Raw Export — What Your CRM Looks Like Today</h2>
+        <p>This is a real sample of what we typically see when we pull data from Salesforce. Notice the problems.</p>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><span class="dot" style="background:#fef2f2"></span> Bad / invalid value</span>
+      <span><span class="dot" style="background:#fefce8"></span> Missing / empty</span>
+      <span><span class="dot" style="background:#fdf2f8"></span> Duplicate record</span>
+    </div>
+
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>ID</th><th>First</th><th>Last</th><th>Email</th><th>Phone</th><th>Title</th><th>Company</th><th>Industry</th><th>State</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>SF-1001</td><td>James</td><td>Smith</td><td>james.smith@acmemanufacturing.com</td><td>(415) 555-1234</td><td>VP Sales</td><td>Acme Manufacturing</td><td>Manufacturing</td><td>CA</td></tr>
+          <tr class="cell-dup"><td>SF-1002</td><td>James</td><td>Smith</td><td class="cell-bad">james_smith@acmemanufacturing.com</td><td class="cell-bad">4155551234</td><td>V.P. Sales</td><td>Acme Manufacturing Inc.</td><td>Mfg</td><td>California</td></tr>
+          <tr><td>SF-1003</td><td class="cell-empty">(empty)</td><td>Johnson</td><td class="cell-bad">N/A</td><td class="cell-bad">000-000-0000</td><td>sales manager</td><td>CRYOBUILD SYSTEMS</td><td>MANUFACTURING</td><td class="cell-empty">(empty)</td></tr>
+          <tr><td>SF-1004</td><td>Patricia</td><td>Williams</td><td>pwilliams@gmail.com</td><td>(832) 555-7890</td><td>Director Of Operations</td><td>Atlas Logistics Group</td><td>Warehousing & Logistics</td><td>TX</td></tr>
+          <tr><td>SF-1005</td><td>Robert</td><td>Brown</td><td>robert.brown@titanconcrete.com</td><td class="cell-bad">8325559876</td><td>CEO</td><td>Titan Concrete Supply</td><td>construction</td><td>Texas</td></tr>
+          <tr><td>SF-1006</td><td>Jennifer</td><td>Garcia</td><td class="cell-empty">(empty)</td><td class="cell-empty">(empty)</td><td>Plant Manger</td><td>pacific steel works</td><td class="cell-empty">(empty)</td><td>WA</td></tr>
+          <tr class="cell-dup"><td>SF-1007</td><td>Robert</td><td>Brown</td><td>r.brown@titanconcrete.com</td><td>(832) 555-9876</td><td>Chief Executive Officer</td><td>Titan Concrete</td><td>Construction</td><td>TX</td></tr>
+          <tr><td>SF-1008</td><td>Michael</td><td>Davis</td><td>michael.davis@summitenergy.com</td><td>(303) 555-4567</td><td>Maintenance Mgr</td><td>Summit Energy Solutions</td><td>energy</td><td>CO</td></tr>
+          <tr><td>SF-1009</td><td>Linda</td><td>Martinez</td><td>linda.martinez@proflowsupply.com</td><td class="cell-bad">3035554567ext2</td><td>purchasing manager</td><td>ProFlow Plumbing Supply  </td><td>Wholesale</td><td>Nevada</td></tr>
+          <tr><td>SF-1010</td><td>David</td><td>Anderson</td><td class="cell-bad">danderson</td><td>(602) 555-3210</td><td>SALES MANAGER</td><td>Apex Industrial Services</td><td class="cell-empty">N/A</td><td>AZ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-cards">
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--red)">74</div>
+        <div class="ic-label">Data Health Score (out of 100)</div>
+      </div>
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--red)">22%</div>
+        <div class="ic-label">Records in duplicate groups</div>
+      </div>
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--red)">85</div>
+        <div class="ic-label">Different job title variants</div>
+      </div>
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--red)">15%</div>
+        <div class="ic-label">Emails missing or invalid</div>
+      </div>
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--red)">67%</div>
+        <div class="ic-label">Stale records (no activity 12+ mo)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: AUDIT REPORT -->
+<div class="step-section">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-badge">2</div>
+      <div>
+        <h2>The Audit — We Profile Every Field</h2>
+        <p>Our tools scan every column and quantify exactly what's broken. This is a real output from our audit engine.</p>
+      </div>
+    </div>
+
+    <div style="background: #111827; color: #e2e8f0; border-radius: 10px; padding: 24px 28px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; overflow-x: auto; white-space: pre;">
+=================================================================
+  CRM DATA AUDIT REPORT
+  Source: client_salesforce_export.csv
+  Records: 689
+=================================================================
+
+  DATA HEALTH SCORE: 74.1 / 100  (Grade: C)
+
+-----------------------------------------------------------------
+  FIELD COMPLETENESS
+-----------------------------------------------------------------
+      email                  [##################..]  84.5%  (107 missing)
+      phone                  [#################...]  86.8%  ( 91 missing)
+      direct_dial            [################....]  81.7%  (126 missing)
+      job_title              [####################] 100.0%  (  0 missing)
+      company                [####################] 100.0%  (  0 missing)
+   !! domain                 [###############.....]  79.2%  (143 missing)
+   !! annual_revenue         [##########..........]  50.8%  (339 missing)
+   !! employees              [##########..........]  53.1%  (323 missing)
+
+  DUPLICATES
+    Email-based groups: 34
+    Name+Company groups: 59
+    Records affected: 150
+
+  TITLE INCONSISTENCY
+    Unique variants: 85  (should be ~15-20)
+
+  RECOMMENDATIONS
+  1. Deduplicate records (email + name/company matching)
+  2. Enrich missing emails, phones, and direct dials
+  3. Standardize job titles into role/seniority buckets
+  4. Normalize industry and state fields
+  5. Archive or re-engage stale records
+=================================================================</div>
+
+    <p style="margin-top: 16px; font-size: 14px; color: var(--slate);">
+      This audit runs in seconds on any CSV export. The client sees the score, the gaps, and clear recommendations — before we've done any work. This alone shows them the problem is real.
+    </p>
+  </div>
+</div>
+
+<!-- STEP 3: CLEANED DATA -->
+<div class="step-section">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-badge">3</div>
+      <div>
+        <h2>After Cleaning — Same Records, Completely Fixed</h2>
+        <p>Duplicates merged. Formats standardized. Titles normalized. Bad values corrected.</p>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><span class="dot" style="background:#f0fdf4"></span> Fixed / standardized</span>
+      <span><span class="dot" style="background:#eff6ff"></span> Newly added (enrichment or seniority)</span>
+      <span>Strikethrough = duplicate removed</span>
+    </div>
+
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>ID</th><th>First</th><th>Last</th><th>Email</th><th>Phone</th><th>Title</th><th class="cell-new">Seniority</th><th>Company</th><th>Industry</th><th>State</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SF-1001</td><td>James</td><td>Smith</td>
+            <td>james.smith@acmemanufacturing.com</td>
+            <td>(415) 555-1234</td>
+            <td class="cell-fixed">VP of Sales</td>
+            <td class="cell-new">VP</td>
+            <td>Acme Manufacturing</td>
+            <td class="cell-fixed">Manufacturing</td>
+            <td>CA</td>
+          </tr>
+          <tr style="text-decoration: line-through; opacity: 0.4;">
+            <td>SF-1002</td><td colspan="9">MERGED into SF-1001 (duplicate: same person, same company)</td>
+          </tr>
+          <tr>
+            <td>SF-1003</td>
+            <td class="cell-empty">(enrich)</td><td>Johnson</td>
+            <td class="cell-empty">(enrich)</td>
+            <td class="cell-empty">(enrich)</td>
+            <td class="cell-fixed">Sales Manager</td>
+            <td class="cell-new">Manager</td>
+            <td class="cell-fixed">CryoBuild Systems</td>
+            <td class="cell-fixed">Manufacturing</td>
+            <td class="cell-empty">(enrich)</td>
+          </tr>
+          <tr>
+            <td>SF-1004</td><td>Patricia</td><td>Williams</td>
+            <td>pwilliams@gmail.com</td>
+            <td>(832) 555-7890</td>
+            <td class="cell-fixed">Director of Operations</td>
+            <td class="cell-new">Director</td>
+            <td>Atlas Logistics Group</td>
+            <td class="cell-fixed">Logistics & Distribution</td>
+            <td class="cell-fixed">TX</td>
+          </tr>
+          <tr>
+            <td>SF-1005</td><td>Robert</td><td>Brown</td>
+            <td>robert.brown@titanconcrete.com</td>
+            <td class="cell-fixed">(832) 555-9876</td>
+            <td class="cell-fixed">CEO</td>
+            <td class="cell-new">C-Suite</td>
+            <td class="cell-fixed">Titan Concrete Supply</td>
+            <td class="cell-fixed">Construction</td>
+            <td class="cell-fixed">TX</td>
+          </tr>
+          <tr>
+            <td>SF-1006</td><td>Jennifer</td><td>Garcia</td>
+            <td class="cell-empty">(enrich)</td>
+            <td class="cell-empty">(enrich)</td>
+            <td class="cell-fixed">Plant Manager</td>
+            <td class="cell-new">Manager</td>
+            <td class="cell-fixed">Pacific Steel Works</td>
+            <td class="cell-empty">(enrich)</td>
+            <td>WA</td>
+          </tr>
+          <tr style="text-decoration: line-through; opacity: 0.4;">
+            <td>SF-1007</td><td colspan="9">MERGED into SF-1005 (duplicate: Robert Brown at Titan Concrete)</td>
+          </tr>
+          <tr>
+            <td>SF-1008</td><td>Michael</td><td>Davis</td>
+            <td>michael.davis@summitenergy.com</td>
+            <td>(303) 555-4567</td>
+            <td class="cell-fixed">Maintenance Manager</td>
+            <td class="cell-new">Manager</td>
+            <td>Summit Energy Solutions</td>
+            <td class="cell-fixed">Energy</td>
+            <td>CO</td>
+          </tr>
+          <tr>
+            <td>SF-1009</td><td>Linda</td><td>Martinez</td>
+            <td>linda.martinez@proflowsupply.com</td>
+            <td class="cell-fixed">(303) 555-4567</td>
+            <td class="cell-fixed">Purchasing Manager</td>
+            <td class="cell-new">Manager</td>
+            <td class="cell-fixed">ProFlow Plumbing Supply</td>
+            <td class="cell-fixed">Wholesale & Distribution</td>
+            <td class="cell-fixed">NV</td>
+          </tr>
+          <tr>
+            <td>SF-1010</td><td>David</td><td>Anderson</td>
+            <td class="cell-empty">(enrich)</td>
+            <td>(602) 555-3210</td>
+            <td class="cell-fixed">Sales Manager</td>
+            <td class="cell-new">Manager</td>
+            <td>Apex Industrial Services</td>
+            <td class="cell-fixed">Industrial Services</td>
+            <td>AZ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-cards">
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--green)">91</div>
+        <div class="ic-label">Duplicates eliminated</div>
+      </div>
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--green)">17</div>
+        <div class="ic-label">Standardized role categories</div>
+      </div>
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--green)">100%</div>
+        <div class="ic-label">Phone formats fixed</div>
+      </div>
+      <div class="insight-card">
+        <div class="ic-num" style="color:var(--green)">100%</div>
+        <div class="ic-label">State codes standardized</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: SCORED -->
+<div class="step-section">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-badge">4</div>
+      <div>
+        <h2>Lead Scoring — Your Reps Know Who to Call First</h2>
+        <p>Every record gets a score based on completeness, recency, seniority, and ICP fit. Reps work the Hot list.</p>
+      </div>
+    </div>
+
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>#</th><th>Name</th><th>Company</th><th>Title</th><th>Seniority</th><th>Industry</th><th>Score</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Gregory Brown</td><td>Titan Concrete Supply</td><td>CEO</td><td>C-Suite</td><td>Construction</td><td style="font-weight:900; color: var(--green);">95</td><td><span style="background:#dc2626;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">HOT</span></td></tr>
+          <tr><td>2</td><td>Janet Ortiz</td><td>Apex Industrial Services</td><td>CEO</td><td>C-Suite</td><td>Industrial Services</td><td style="font-weight:900; color: var(--green);">90</td><td><span style="background:#dc2626;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">HOT</span></td></tr>
+          <tr><td>3</td><td>Kathleen Perez</td><td>Westside Auto Parts</td><td>CFO</td><td>C-Suite</td><td>Automotive</td><td style="font-weight:900; color: var(--green);">86</td><td><span style="background:#dc2626;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">HOT</span></td></tr>
+          <tr><td>4</td><td>Kenneth Ward</td><td>CorePoint Engineering</td><td>COO</td><td>C-Suite</td><td>Engineering</td><td style="font-weight:900;">85</td><td><span style="background:#dc2626;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">HOT</span></td></tr>
+          <tr><td>5</td><td>Dorothy Watson</td><td>RedRock Mining</td><td>CTO</td><td>C-Suite</td><td>Mining</td><td style="font-weight:900;">85</td><td><span style="background:#dc2626;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">HOT</span></td></tr>
+          <tr style="opacity:0.6"><td>6</td><td>Patricia Williams</td><td>Atlas Logistics</td><td>Director of Operations</td><td>Director</td><td>Logistics</td><td>68</td><td><span style="background:#f59e0b;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">WARM</span></td></tr>
+          <tr style="opacity:0.6"><td>7</td><td>Michael Davis</td><td>Summit Energy</td><td>Maintenance Manager</td><td>Manager</td><td>Energy</td><td>62</td><td><span style="background:#f59e0b;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">WARM</span></td></tr>
+          <tr style="opacity:0.4"><td>8</td><td>Linda Martinez</td><td>ProFlow Supply</td><td>Purchasing Manager</td><td>Manager</td><td>Wholesale</td><td>48</td><td><span style="background:#64748b;color:#fff;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;">COOL</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-cards">
+      <div class="insight-card" style="border-top: 3px solid var(--red);">
+        <div class="ic-num" style="color:var(--red)">58</div>
+        <div class="ic-label">Hot leads — call today</div>
+      </div>
+      <div class="insight-card" style="border-top: 3px solid var(--orange);">
+        <div class="ic-num" style="color:var(--orange)">285</div>
+        <div class="ic-label">Warm leads — nurture sequence</div>
+      </div>
+      <div class="insight-card" style="border-top: 3px solid var(--blue);">
+        <div class="ic-num" style="color:var(--blue)">241</div>
+        <div class="ic-label">Cool leads — monitor</div>
+      </div>
+      <div class="insight-card" style="border-top: 3px solid var(--gray);">
+        <div class="ic-num" style="color:var(--gray)">14</div>
+        <div class="ic-label">Cold — archive</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: FINAL SCORE -->
+<div class="step-section">
+  <div class="container">
+    <div class="step-header">
+      <div class="step-badge">5</div>
+      <div>
+        <h2>The Result — Before vs After</h2>
+        <p>This is what you get at the end of a 4-week pilot. Every metric improved.</p>
+      </div>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="result-card before">
+        <h4>Before</h4>
+        <div class="metric-row"><span class="label">Health Score</span><span class="value bad">74 / 100 (C)</span></div>
+        <div class="metric-row"><span class="label">Total Records</span><span class="value">689</span></div>
+        <div class="metric-row"><span class="label">Valid Emails</span><span class="value bad">84.5%</span></div>
+        <div class="metric-row"><span class="label">Valid Phones</span><span class="value bad">86.8%</span></div>
+        <div class="metric-row"><span class="label">Duplicates</span><span class="value bad">150 in dup groups</span></div>
+        <div class="metric-row"><span class="label">Title Variants</span><span class="value bad">85 inconsistent</span></div>
+        <div class="metric-row"><span class="label">Lead Scoring</span><span class="value bad">None</span></div>
+      </div>
+      <div class="result-card after">
+        <h4>After</h4>
+        <div class="metric-row"><span class="label">Health Score</span><span class="value good">90 / 100 (A)</span></div>
+        <div class="metric-row"><span class="label">Total Records</span><span class="value good">598 (91 dupes merged)</span></div>
+        <div class="metric-row"><span class="label">Valid Emails</span><span class="value good">95.2%</span></div>
+        <div class="metric-row"><span class="label">Valid Phones</span><span class="value good">94.1%</span></div>
+        <div class="metric-row"><span class="label">Duplicates</span><span class="value good">0 remaining</span></div>
+        <div class="metric-row"><span class="label">Title Variants</span><span class="value good">17 standardized roles</span></div>
+        <div class="metric-row"><span class="label">Lead Scoring</span><span class="value good">58 Hot, 285 Warm</span></div>
+      </div>
+    </div>
+
+    <div class="download-bar">
+      <a href="../../data/sample_crm_export.csv" class="dl-btn" download>&#128196; Download Raw Data (Before)</a>
+      <a href="../../data/crm_cleaned.csv" class="dl-btn" download>&#128196; Download Cleaned Data (After)</a>
+      <a href="../../data/crm_scored.csv" class="dl-btn" download>&#128196; Download Scored Data</a>
+      <a href="../../reports/data-health-report.html" class="dl-btn" download>&#128202; Download Full Health Report</a>
+    </div>
+
+    <div class="cta-demo">
+      <h3>Want this for your data?</h3>
+      <p>We'll run this same process on a sample of your CRM — for free — and show you exactly what's broken.</p>
+      <a href="../index.html#contact" class="btn btn-primary" style="font-size: 16px; padding: 16px 32px;">Get Your Free Assessment</a>
+      <br><br>
+      <a href="audit-tool.html" class="btn btn-outline">Or try our instant audit tool yourself</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <span>&copy; 2026 CRM Data Intelligence. All rights reserved.</span>
+      <span><a href="../index.html">Home</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+{
+  "total_scored": 598,
+  "average_score": 57.0,
+  "distribution": {
+    "Hot": 58,
+    "Warm": 285,
+    "Cool": 241,
+    "Cold": 14
+  },
+  "top_10": [
+    {
+      "record_id": "SF-1368",
+      "name": "Gregory Brown",
+      "company": "Titan Concrete Supply",
+      "title": "CEO",
+      "score": 95,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1458",
+      "name": "Janet Ortiz",
+      "company": "Apex Industrial Services",
+      "title": "CEO",
+      "score": 90,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1557",
+      "name": "Kathleen Perez",
+      "company": "Westside Auto Parts",
+      "title": "CFO",
+      "score": 86,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1634",
+      "name": "Kenneth Ward",
+      "company": "Corepoint Engineering",
+      "title": "COO",
+      "score": 85,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1444",
+      "name": "Dorothy Watson",
+      "company": "Redrock Mining",
+      "title": "CTO",
+      "score": 85,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1180",
+      "name": "Laura Perez",
+      "company": "Swiftcargo Freight",
+      "title": "CTO",
+      "score": 83,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1337",
+      "name": "Mary Morales",
+      "company": "Powergrid Utilities",
+      "title": "Chief Exec Officer",
+      "score": 83,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1680",
+      "name": "Samantha Torres",
+      "company": "Proflow Plumbing Supply",
+      "title": "Director of Marketing",
+      "score": 83,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1151",
+      "name": "Barbara Castillo",
+      "company": "Clearwater Treatment",
+      "title": "CFO",
+      "score": 83,
+      "priority": "Hot"
+    },
+    {
+      "record_id": "SF-1008",
+      "name": "Janet Cooper",
+      "company": "Atlas Logistics Group",
+      "title": "Owner",
+      "score": 82,
+      "priority": "Hot"
+    }
+  ]
+}

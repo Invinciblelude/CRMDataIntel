@@ -1,0 +1,507 @@
+{
+  "original_records": 689,
+  "after_dedup": 598,
+  "duplicates_removed": 91,
+  "merge_details": [
+    {
+      "kept": "SF-1658",
+      "removed": "SF-1657"
+    },
+    {
+      "kept": "SF-1371",
+      "removed": "SF-1372"
+    },
+    {
+      "kept": "SF-1285",
+      "removed": "SF-1232"
+    },
+    {
+      "kept": "SF-1056",
+      "removed": "SF-1057"
+    },
+    {
+      "kept": "SF-1510",
+      "removed": "SF-1509"
+    },
+    {
+      "kept": "SF-1491",
+      "removed": "SF-1490"
+    },
+    {
+      "kept": "SF-1236",
+      "removed": "SF-1235"
+    },
+    {
+      "kept": "SF-1535",
+      "removed": "SF-1534"
+    },
+    {
+      "kept": "SF-1080",
+      "removed": "SF-1081"
+    },
+    {
+      "kept": "SF-1008",
+      "removed": "SF-1007"
+    },
+    {
+      "kept": "SF-1605",
+      "removed": "SF-1606"
+    },
+    {
+      "kept": "SF-1095",
+      "removed": "SF-1094"
+    },
+    {
+      "kept": "SF-1300",
+      "removed": "SF-1299"
+    },
+    {
+      "kept": "SF-1345",
+      "removed": "SF-1346"
+    },
+    {
+      "kept": "SF-1348",
+      "removed": "SF-1349"
+    },
+    {
+      "kept": "SF-1214",
+      "removed": "SF-1213"
+    },
+    {
+      "kept": "SF-1013",
+      "removed": "SF-1012"
+    },
+    {
+      "kept": "SF-1643",
+      "removed": "SF-1644"
+    },
+    {
+      "kept": "SF-1106",
+      "removed": "SF-1107"
+    },
+    {
+      "kept": "SF-1248",
+      "removed": "SF-1249"
+    },
+    {
+      "kept": "SF-1483",
+      "removed": "SF-1482"
+    },
+    {
+      "kept": "SF-1616",
+      "removed": "SF-1617"
+    },
+    {
+      "kept": "SF-1121",
+      "removed": "SF-1122"
+    },
+    {
+      "kept": "SF-1467",
+      "removed": "SF-1468"
+    },
+    {
+      "kept": "SF-1127",
+      "removed": "SF-1126"
+    },
+    {
+      "kept": "SF-1565",
+      "removed": "SF-1566"
+    },
+    {
+      "kept": "SF-1104",
+      "removed": "SF-1103"
+    },
+    {
+      "kept": "SF-1044",
+      "removed": "SF-1045"
+    },
+    {
+      "kept": "SF-1283",
+      "removed": "SF-1284"
+    },
+    {
+      "kept": "SF-1516",
+      "removed": "SF-1517"
+    },
+    {
+      "kept": "SF-1278",
+      "removed": "SF-1277"
+    },
+    {
+      "kept": "SF-1686",
+      "removed": "SF-1687"
+    },
+    {
+      "kept": "SF-1639",
+      "removed": "SF-1640"
+    },
+    {
+      "kept": "SF-1406",
+      "removed": "SF-1407"
+    },
+    {
+      "kept": "SF-1211",
+      "removed": "SF-1453"
+    },
+    {
+      "kept": "SF-1211",
+      "removed": "SF-1212"
+    },
+    {
+      "kept": "SF-1658",
+      "removed": "SF-1657"
+    },
+    {
+      "kept": "SF-1114",
+      "removed": "SF-1115"
+    },
+    {
+      "kept": "SF-1368",
+      "removed": "SF-1369"
+    },
+    {
+      "kept": "SF-1371",
+      "removed": "SF-1372"
+    },
+    {
+      "kept": "SF-1334",
+      "removed": "SF-1333"
+    },
+    {
+      "kept": "SF-1285",
+      "removed": "SF-1286"
+    },
+    {
+      "kept": "SF-1285",
+      "removed": "SF-1232"
+    },
+    {
+      "kept": "SF-1192",
+      "removed": "SF-1193"
+    },
+    {
+      "kept": "SF-1026",
+      "removed": "SF-1027"
+    },
+    {
+      "kept": "SF-1310",
+      "removed": "SF-1311"
+    },
+    {
+      "kept": "SF-1177",
+      "removed": "SF-1178"
+    },
+    {
+      "kept": "SF-1618",
+      "removed": "SF-1619"
+    },
+    {
+      "kept": "SF-1056",
+      "removed": "SF-1057"
+    },
+    {
+      "kept": "SF-1593",
+      "removed": "SF-1594"
+    },
+    {
+      "kept": "SF-1513",
+      "removed": "SF-1514"
+    },
+    {
+      "kept": "SF-1204",
+      "removed": "SF-1205"
+    },
+    {
+      "kept": "SF-1245",
+      "removed": "SF-1246"
+    },
+    {
+      "kept": "SF-1156",
+      "removed": "SF-1157"
+    },
+    {
+      "kept": "SF-1412",
+      "removed": "SF-1413"
+    },
+    {
+      "kept": "SF-1510",
+      "removed": "SF-1509"
+    },
+    {
+      "kept": "SF-1491",
+      "removed": "SF-1490"
+    },
+    {
+      "kept": "SF-1329",
+      "removed": "SF-1330"
+    },
+    {
+      "kept": "SF-1092",
+      "removed": "SF-1093"
+    },
+    {
+      "kept": "SF-1202",
+      "removed": "SF-1203"
+    },
+    {
+      "kept": "SF-1337",
+      "removed": "SF-1338"
+    },
+    {
+      "kept": "SF-1236",
+      "removed": "SF-1235"
+    },
+    {
+      "kept": "SF-1535",
+      "removed": "SF-1534"
+    },
+    {
+      "kept": "SF-1118",
+      "removed": "SF-1119"
+    },
+    {
+      "kept": "SF-1526",
+      "removed": "SF-1527"
+    },
+    {
+      "kept": "SF-1562",
+      "removed": "SF-1563"
+    },
+    {
+      "kept": "SF-1005",
+      "removed": "SF-1006"
+    },
+    {
+      "kept": "SF-1273",
+      "removed": "SF-1274"
+    },
+    {
+      "kept": "SF-1080",
+      "removed": "SF-1081"
+    },
+    {
+      "kept": "SF-1008",
+      "removed": "SF-1007"
+    },
+    {
+      "kept": "SF-1605",
+      "removed": "SF-1606"
+    },
+    {
+      "kept": "SF-1095",
+      "removed": "SF-1094"
+    },
+    {
+      "kept": "SF-1552",
+      "removed": "SF-1553"
+    },
+    {
+      "kept": "SF-1600",
+      "removed": "SF-1601"
+    },
+    {
+      "kept": "SF-1571",
+      "removed": "SF-1572"
+    },
+    {
+      "kept": "SF-1003",
+      "removed": "SF-1004"
+    },
+    {
+      "kept": "SF-1377",
+      "removed": "SF-1378"
+    },
+    {
+      "kept": "SF-1300",
+      "removed": "SF-1299"
+    },
+    {
+      "kept": "SF-1040",
+      "removed": "SF-1041"
+    },
+    {
+      "kept": "SF-1416",
+      "removed": "SF-1417"
+    },
+    {
+      "kept": "SF-1345",
+      "removed": "SF-1346"
+    },
+    {
+      "kept": "SF-1455",
+      "removed": "SF-1456"
+    },
+    {
+      "kept": "SF-1270",
+      "removed": "SF-1271"
+    },
+    {
+      "kept": "SF-1010",
+      "removed": "SF-1011"
+    },
+    {
+      "kept": "SF-1348",
+      "removed": "SF-1349"
+    },
+    {
+      "kept": "SF-1214",
+      "removed": "SF-1213"
+    },
+    {
+      "kept": "SF-1360",
+      "removed": "SF-1361"
+    },
+    {
+      "kept": "SF-1013",
+      "removed": "SF-1012"
+    },
+    {
+      "kept": "SF-1643",
+      "removed": "SF-1644"
+    },
+    {
+      "kept": "SF-1258",
+      "removed": "SF-1259"
+    },
+    {
+      "kept": "SF-1106",
+      "removed": "SF-1107"
+    },
+    {
+      "kept": "SF-1173",
+      "removed": "SF-1174"
+    },
+    {
+      "kept": "SF-1305",
+      "removed": "SF-1306"
+    },
+    {
+      "kept": "SF-1140",
+      "removed": "SF-1141"
+    },
+    {
+      "kept": "SF-1248",
+      "removed": "SF-1249"
+    },
+    {
+      "kept": "SF-1483",
+      "removed": "SF-1482"
+    },
+    {
+      "kept": "SF-1089",
+      "removed": "SF-1090"
+    },
+    {
+      "kept": "SF-1168",
+      "removed": "SF-1169"
+    },
+    {
+      "kept": "SF-1616",
+      "removed": "SF-1617"
+    },
+    {
+      "kept": "SF-1470",
+      "removed": "SF-1471"
+    },
+    {
+      "kept": "SF-1121",
+      "removed": "SF-1122"
+    },
+    {
+      "kept": "SF-1467",
+      "removed": "SF-1468"
+    },
+    {
+      "kept": "SF-1127",
+      "removed": "SF-1126"
+    },
+    {
+      "kept": "SF-1565",
+      "removed": "SF-1566"
+    },
+    {
+      "kept": "SF-1429",
+      "removed": "SF-1430"
+    },
+    {
+      "kept": "SF-1219",
+      "removed": "SF-1220"
+    },
+    {
+      "kept": "SF-1194",
+      "removed": "SF-1195"
+    },
+    {
+      "kept": "SF-1242",
+      "removed": "SF-1243"
+    },
+    {
+      "kept": "SF-1060",
+      "removed": "SF-1061"
+    },
+    {
+      "kept": "SF-1531",
+      "removed": "SF-1532"
+    },
+    {
+      "kept": "SF-1104",
+      "removed": "SF-1103"
+    },
+    {
+      "kept": "SF-1044",
+      "removed": "SF-1045"
+    },
+    {
+      "kept": "SF-1358",
+      "removed": "SF-1359"
+    },
+    {
+      "kept": "SF-1650",
+      "removed": "SF-1651"
+    },
+    {
+      "kept": "SF-1283",
+      "removed": "SF-1284"
+    },
+    {
+      "kept": "SF-1394",
+      "removed": "SF-1395"
+    },
+    {
+      "kept": "SF-1432",
+      "removed": "SF-1433"
+    },
+    {
+      "kept": "SF-1082",
+      "removed": "SF-1083"
+    },
+    {
+      "kept": "SF-1516",
+      "removed": "SF-1517"
+    },
+    {
+      "kept": "SF-1523",
+      "removed": "SF-1524"
+    },
+    {
+      "kept": "SF-1278",
+      "removed": "SF-1277"
+    },
+    {
+      "kept": "SF-1686",
+      "removed": "SF-1687"
+    },
+    {
+      "kept": "SF-1420",
+      "removed": "SF-1421"
+    },
+    {
+      "kept": "SF-1639",
+      "removed": "SF-1640"
+    },
+    {
+      "kept": "SF-1406",
+      "removed": "SF-1407"
+    }
+  ]
+}

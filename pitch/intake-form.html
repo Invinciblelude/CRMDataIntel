@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Intake Form — CRM Data Intelligence</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #1a1a2e;
+    background: #f1f5f9;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { background: #fff; font-size: 11pt; }
+    .page { box-shadow: none; }
+  }
+
+  .page {
+    max-width: 8.5in;
+    margin: 24px auto;
+    padding: 48px 56px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .section {
+    margin-bottom: 28px;
+  }
+
+  .section h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .section h2 .num {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    background: #0f172a;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    margin-bottom: 12px;
+  }
+
+  .field-group.full { grid-template-columns: 1fr; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .field .line {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid #cbd5e1;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #1a1a2e;
+    background: transparent;
+    min-height: 32px;
+  }
+
+  .field textarea.line {
+    min-height: 60px;
+    resize: vertical;
+  }
+
+  .checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .checklist label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #334155;
+    cursor: pointer;
+  }
+
+  .checklist input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2563eb;
+  }
+
+  .note-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 8px;
+  }
+
+  .sig-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 2px solid #0f172a;
+  }
+
+  .sig-block label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .sig-block .sig-line {
+    border-bottom: 1.5px solid #cbd5e1;
+    height: 40px;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Project Intake Form</h1>
+  <p class="subtitle">Please complete this form so we can scope your CRM data engagement accurately. All information is confidential.</p>
+
+  <div class="section">
+    <h2><span class="num">1</span> Company Information</h2>
+    <div class="field-group">
+      <div class="field">
+        <label>Company Name</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Website / Domain</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Industry</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Approximate Employees</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Primary Contact Name</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Contact Email / Phone</label>
+        <input type="text" class="line">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">2</span> Current CRM Setup</h2>
+    <div class="field-group">
+      <div class="field">
+        <label>CRM Platform (Salesforce, HubSpot, other)</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Approximate # of Contacts / Leads</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Approximate # of Accounts / Companies</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label># of Sales Reps Using CRM</label>
+        <input type="text" class="line">
+      </div>
+    </div>
+    <div class="field-group full">
+      <div class="field">
+        <label>Other tools integrated with CRM (enrichment, outreach, BI, etc.)</label>
+        <textarea class="line"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">3</span> Known Data Issues</h2>
+    <p style="font-size: 13px; color: #475569; margin-bottom: 12px;">Check all that apply:</p>
+    <div class="checklist">
+      <label><input type="checkbox"> Duplicate contacts / accounts</label>
+      <label><input type="checkbox"> Missing emails or phone numbers</label>
+      <label><input type="checkbox"> Outdated job titles</label>
+      <label><input type="checkbox"> Inconsistent formatting (state, industry, etc.)</label>
+      <label><input type="checkbox"> No clear owner assignment on records</label>
+      <label><input type="checkbox"> Stale / inactive leads clogging CRM</label>
+      <label><input type="checkbox"> Reps don't trust the data</label>
+      <label><input type="checkbox"> Reports and dashboards show wrong numbers</label>
+      <label><input type="checkbox"> AI / scoring tools give bad results</label>
+      <label><input type="checkbox"> Other (describe below)</label>
+    </div>
+    <div class="field-group full" style="margin-top: 12px;">
+      <div class="field">
+        <label>Describe your biggest data pain point</label>
+        <textarea class="line"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">4</span> Target Outcomes</h2>
+    <p style="font-size: 13px; color: #475569; margin-bottom: 12px;">What matters most to you? Check top 3:</p>
+    <div class="checklist">
+      <label><input type="checkbox"> Higher outbound response rates</label>
+      <label><input type="checkbox"> Better lead routing / territory coverage</label>
+      <label><input type="checkbox"> More accurate forecasting</label>
+      <label><input type="checkbox"> AI / scoring tools that actually work</label>
+      <label><input type="checkbox"> Reps spend less time researching</label>
+      <label><input type="checkbox"> Cleaner segmentation for marketing</label>
+      <label><input type="checkbox"> Compliance / data governance</label>
+      <label><input type="checkbox"> Other: _______________</label>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">5</span> Ideal Customer Profile (ICP)</h2>
+    <div class="field-group">
+      <div class="field">
+        <label>Target industries</label>
+        <textarea class="line"></textarea>
+      </div>
+      <div class="field">
+        <label>Target company size (employees / revenue)</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Target job titles / roles</label>
+        <textarea class="line"></textarea>
+      </div>
+      <div class="field">
+        <label>Target geography</label>
+        <input type="text" class="line">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">6</span> Access &amp; Boundaries</h2>
+    <div class="field-group full">
+      <div class="field">
+        <label>How will data be provided? (CSV export, API access, sandbox, etc.)</label>
+        <input type="text" class="line">
+      </div>
+    </div>
+    <p style="font-size: 13px; color: #475569; margin: 12px 0 8px;">Boundaries:</p>
+    <div class="checklist">
+      <label><input type="checkbox"> Do NOT overwrite existing populated fields</label>
+      <label><input type="checkbox"> Do NOT delete any records (archive only)</label>
+      <label><input type="checkbox"> NDA required before sharing data</label>
+      <label><input type="checkbox"> Changes must go through sandbox / staging first</label>
+    </div>
+    <div class="field-group full" style="margin-top: 12px;">
+      <div class="field">
+        <label>Any other restrictions or special requirements?</label>
+        <textarea class="line"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">7</span> Timeline &amp; Budget</h2>
+    <div class="field-group">
+      <div class="field">
+        <label>Preferred start date</label>
+        <input type="text" class="line">
+      </div>
+      <div class="field">
+        <label>Budget range (if known)</label>
+        <input type="text" class="line">
+      </div>
+    </div>
+    <div class="note-box">
+      Most pilot engagements run 4 weeks and include a full audit, cleanse, enrichment, and scored output.
+      Ongoing retainer options are available for continuous data maintenance and monitoring.
+    </div>
+  </div>
+
+  <div class="sig-section">
+    <div class="sig-block">
+      <label>Client Signature</label>
+      <div class="sig-line"></div>
+      <label>Date</label>
+      <div class="sig-line"></div>
+    </div>
+    <div class="sig-block">
+      <label>Consultant Signature</label>
+      <div class="sig-line"></div>
+      <label>Date</label>
+      <div class="sig-line"></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

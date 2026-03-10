@@ -1,0 +1,162 @@
+{
+  "fixed_monthly_costs": {
+    "cursor": 200,
+    "enrichment_tool": 50,
+    "hosting": 50,
+    "travel": 200,
+    "misc": 100,
+    "total": 600
+  },
+  "capacity": {
+    "total_hours_month": 172.0,
+    "billable_hours_month": 103.2
+  },
+  "engagements": [
+    {
+      "engagement": "Free Assessment (Door Opener)",
+      "description": "Run audit on a sample, present 1-page health score. Goal: earn the pilot.",
+      "records": 500,
+      "price_charged": 0,
+      "total_hours": 3.0,
+      "hours_breakdown": {
+        "discovery_call": 0.5,
+        "data_export_setup": 0.5,
+        "run_audit_script": 0.5,
+        "prepare_1page_report": 1.0,
+        "present_findings": 0.5
+      },
+      "enrichment_records_sent": 0,
+      "enrichment_records_hit": 0,
+      "enrichment_cost": 0,
+      "gross_profit": 0,
+      "effective_hourly_rate": 0.0
+    },
+    {
+      "engagement": "Basic Pilot (Tier 1)",
+      "description": "Audit + Cleanse + Dedupe + Normalize + Basic Enrichment + Score. 4 weeks.",
+      "records": 10000,
+      "price_charged": 3500,
+      "total_hours": 27.0,
+      "hours_breakdown": {
+        "kickoff_and_intake": 1.5,
+        "data_export_and_mapping": 2.0,
+        "audit_and_profiling": 2.0,
+        "build_cleaning_rules": 4.0,
+        "run_cleanse_and_dedupe": 2.0,
+        "normalize_titles_industries": 2.0,
+        "basic_enrichment_setup": 2.0,
+        "run_enrichment": 1.0,
+        "lead_scoring_setup": 2.0,
+        "build_health_report": 2.0,
+        "write_sop_document": 2.0,
+        "present_results": 1.5,
+        "revisions_and_qa": 3.0
+      },
+      "enrichment_records_sent": 3000,
+      "enrichment_records_hit": 2100,
+      "enrichment_cost": 105.0,
+      "gross_profit": 3395.0,
+      "effective_hourly_rate": 125.74
+    },
+    {
+      "engagement": "Standard Pilot (Tier 2)",
+      "description": "Everything in Basic + Dashboard + ICP Segmentation + Full Enrichment. 4-6 weeks.",
+      "records": 30000,
+      "price_charged": 7500,
+      "total_hours": 49.0,
+      "hours_breakdown": {
+        "kickoff_and_intake": 2.0,
+        "data_export_and_mapping": 3.0,
+        "audit_and_profiling": 3.0,
+        "build_cleaning_rules": 6.0,
+        "run_cleanse_and_dedupe": 3.0,
+        "normalize_titles_industries": 3.0,
+        "enrichment_workflow_setup": 4.0,
+        "run_enrichment_waterfall": 2.0,
+        "lead_scoring_model": 4.0,
+        "segmentation_and_icp_mapping": 3.0,
+        "build_dashboard": 4.0,
+        "build_health_report": 3.0,
+        "write_sop_and_playbook": 3.0,
+        "present_results": 2.0,
+        "revisions_and_qa": 4.0
+      },
+      "enrichment_records_sent": 10000,
+      "enrichment_records_hit": 7000,
+      "enrichment_cost": 1750.0,
+      "gross_profit": 5750.0,
+      "effective_hourly_rate": 117.35
+    },
+    {
+      "engagement": "Enterprise Pilot (Tier 3)",
+      "description": "Full org cleanup. Multi-object. Sandbox import. Leadership presentation. 6-8 weeks.",
+      "records": 100000,
+      "price_charged": 15000,
+      "total_hours": 81.0,
+      "hours_breakdown": {
+        "kickoff_and_stakeholder_meetings": 4.0,
+        "data_export_multi_object": 5.0,
+        "audit_and_profiling": 5.0,
+        "build_cleaning_rules_complex": 10.0,
+        "run_cleanse_and_dedupe": 4.0,
+        "normalize_all_fields": 5.0,
+        "enrichment_workflow_waterfall": 6.0,
+        "run_enrichment": 3.0,
+        "lead_scoring_model_custom": 6.0,
+        "segmentation_icp_persona": 5.0,
+        "build_dashboard_advanced": 6.0,
+        "salesforce_sandbox_import": 4.0,
+        "build_health_report": 4.0,
+        "write_sop_playbook_training": 5.0,
+        "present_to_leadership": 3.0,
+        "revisions_qa_iteration": 6.0
+      },
+      "enrichment_records_sent": 30000,
+      "enrichment_records_hit": 21000,
+      "enrichment_cost": 5250.0,
+      "gross_profit": 9750.0,
+      "effective_hourly_rate": 120.37
+    },
+    {
+      "engagement": "Monthly Retainer (Basic)",
+      "description": "Weekly checks, monthly dedupe, enrich new leads, dashboard, report. Per month.",
+      "records": 10000,
+      "price_charged": 1500,
+      "total_hours": 7.5,
+      "hours_breakdown": {
+        "weekly_quality_check": 2.0,
+        "monthly_dedupe_run": 1.0,
+        "monthly_enrichment_new_leads": 1.0,
+        "dashboard_update": 1.0,
+        "monthly_report": 1.5,
+        "client_call": 1.0
+      },
+      "enrichment_records_sent": 500,
+      "enrichment_records_hit": 350,
+      "enrichment_cost": 87.5,
+      "gross_profit": 1412.5,
+      "effective_hourly_rate": 188.33
+    },
+    {
+      "engagement": "Monthly Retainer (Standard)",
+      "description": "Everything in Basic + scoring refresh + coaching. Per month.",
+      "records": 30000,
+      "price_charged": 3000,
+      "total_hours": 16.0,
+      "hours_breakdown": {
+        "weekly_quality_check": 4.0,
+        "biweekly_dedupe_run": 2.0,
+        "monthly_enrichment": 2.0,
+        "scoring_model_refresh": 2.0,
+        "dashboard_update": 2.0,
+        "monthly_report": 2.0,
+        "client_call_and_coaching": 2.0
+      },
+      "enrichment_records_sent": 1500,
+      "enrichment_records_hit": 1050,
+      "enrichment_cost": 262.5,
+      "gross_profit": 2737.5,
+      "effective_hourly_rate": 171.09
+    }
+  ]
+}

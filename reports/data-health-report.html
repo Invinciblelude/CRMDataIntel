@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Health Report — Before &amp; After</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #f1f5f9; line-height: 1.6; }
+  @media print { body { background: #fff; font-size: 10pt; } .page { box-shadow: none; margin: 0; padding: 0.4in; } }
+
+  .page { max-width: 8.5in; margin: 24px auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); overflow: hidden; }
+
+  .report-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #fff; padding: 36px 48px;
+  }
+  .report-header h1 { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
+  .report-header .meta { font-size: 13px; color: #94a3b8; }
+
+  .body-content { padding: 36px 48px; }
+
+  .score-banner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;
+  }
+  .score-card {
+    border-radius: 12px; padding: 28px; text-align: center; border: 2px solid;
+  }
+  .score-card.before { background: #fef2f2; border-color: #fca5a5; }
+  .score-card.after { background: #f0fdf4; border-color: #86efac; }
+  .score-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: #64748b; margin-bottom: 8px; }
+  .score-card .big { font-size: 56px; font-weight: 800; }
+  .score-card.before .big { color: #dc2626; }
+  .score-card.after .big { color: #16a34a; }
+  .score-card .grade { font-size: 20px; font-weight: 700; color: #475569; }
+
+  h2 { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .metrics-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 13px; }
+  .metrics-table th { background: #f8fafc; text-align: left; padding: 10px 14px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .metrics-table td { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; }
+  .metrics-table tr:hover { background: #f8fafc; }
+  .bad { color: #dc2626; font-weight: 600; }
+  .good { color: #16a34a; font-weight: 600; }
+  .delta { background: #f0fdf4; color: #16a34a; font-weight: 700; border-radius: 4px; padding: 2px 8px; font-size: 12px; }
+  .delta.neg { background: #fef2f2; color: #dc2626; }
+
+  .bar-container { display: flex; align-items: center; gap: 8px; }
+  .bar { height: 12px; border-radius: 6px; transition: width 0.3s; }
+  .bar.before-bar { background: #fca5a5; }
+  .bar.after-bar { background: #86efac; }
+  .bar-label { font-size: 12px; font-weight: 600; min-width: 42px; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  .summary-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; }
+  .summary-card .num { font-size: 28px; font-weight: 800; color: #0f172a; }
+  .summary-card .desc { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  .lead-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 32px; }
+  .lead-table th { background: #0f172a; color: #fff; padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .lead-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; }
+  .lead-table tr:nth-child(even) { background: #f8fafc; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+  .badge.hot { background: #dc2626; color: #fff; }
+  .badge.warm { background: #f59e0b; color: #fff; }
+
+  .next-steps { background: #0f172a; color: #fff; padding: 28px 32px; border-radius: 12px; }
+  .next-steps h2 { color: #fff; margin-bottom: 12px; }
+  .next-steps ol { padding-left: 20px; }
+  .next-steps li { margin-bottom: 8px; font-size: 14px; color: #cbd5e1; }
+
+  .footer { text-align: center; padding: 20px; font-size: 11px; color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="report-header">
+    <h1>Data Health Report</h1>
+    <p class="meta">Sample Engagement &mdash; 689 Records Audited &mdash; March 2026</p>
+  </div>
+
+  <div class="body-content">
+
+    <div class="score-banner">
+      <div class="score-card before">
+        <div class="label">Before</div>
+        <div class="big">74</div>
+        <div class="grade">Grade: C</div>
+      </div>
+      <div class="score-card after">
+        <div class="label">After</div>
+        <div class="big">92</div>
+        <div class="grade">Grade: A</div>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="num">91 <span style="font-size:16px;color:#dc2626">removed</span></div>
+        <div class="desc">Duplicate records eliminated (689 → 598)</div>
+      </div>
+      <div class="summary-card">
+        <div class="num">85 → 17 <span style="font-size:16px;color:#16a34a">variants</span></div>
+        <div class="desc">Job title variants standardized into role/seniority buckets</div>
+      </div>
+      <div class="summary-card">
+        <div class="num">58 <span style="font-size:16px;color:#f59e0b">Hot leads</span></div>
+        <div class="desc">High-priority leads identified by AI scoring</div>
+      </div>
+      <div class="summary-card">
+        <div class="num">285 <span style="font-size:16px;color:#2563eb">Warm leads</span></div>
+        <div class="desc">Leads ready for nurture sequences</div>
+      </div>
+    </div>
+
+    <h2>Field Completeness: Before vs After</h2>
+    <table class="metrics-table">
+      <thead>
+        <tr><th>Field</th><th>Before</th><th style="width:200px">Visual</th><th>After</th><th>Change</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Email</td>
+          <td class="bad">84.5%</td>
+          <td>
+            <div class="bar-container">
+              <div class="bar before-bar" style="width:84px"></div>
+              <div class="bar after-bar" style="width:95px"></div>
+            </div>
+          </td>
+          <td class="good">95.2%</td>
+          <td><span class="delta">+10.7%</span></td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td class="bad">86.8%</td>
+          <td>
+            <div class="bar-container">
+              <div class="bar before-bar" style="width:86px"></div>
+              <div class="bar after-bar" style="width:94px"></div>
+            </div>
+          </td>
+          <td class="good">94.1%</td>
+          <td><span class="delta">+7.3%</span></td>
+        </tr>
+        <tr>
+          <td>Direct Dial</td>
+          <td class="bad">81.7%</td>
+          <td>
+            <div class="bar-container">
+              <div class="bar before-bar" style="width:81px"></div>
+              <div class="bar after-bar" style="width:91px"></div>
+            </div>
+          </td>
+          <td class="good">91.3%</td>
+          <td><span class="delta">+9.6%</span></td>
+        </tr>
+        <tr>
+          <td>Job Title (standardized)</td>
+          <td class="bad">85 variants</td>
+          <td>
+            <div class="bar-container">
+              <div class="bar before-bar" style="width:40px"></div>
+              <div class="bar after-bar" style="width:95px"></div>
+            </div>
+          </td>
+          <td class="good">17 standard roles</td>
+          <td><span class="delta">-80%</span></td>
+        </tr>
+        <tr>
+          <td>Industry (normalized)</td>
+          <td class="bad">30+ variants</td>
+          <td>
+            <div class="bar-container">
+              <div class="bar before-bar" style="width:50px"></div>
+              <div class="bar after-bar" style="width:95px"></div>
+            </div>
+          </td>
+          <td class="good">18 standard categories</td>
+          <td><span class="delta">-40%</span></td>
+        </tr>
+        <tr>
+          <td>State (formatted)</td>
+          <td class="bad">Mixed formats</td>
+          <td>
+            <div class="bar-container">
+              <div class="bar before-bar" style="width:60px"></div>
+              <div class="bar after-bar" style="width:100px"></div>
+            </div>
+          </td>
+          <td class="good">100% 2-letter codes</td>
+          <td><span class="delta">Standardized</span></td>
+        </tr>
+        <tr>
+          <td>Duplicates</td>
+          <td class="bad">150 records in dup groups</td>
+          <td>
+            <div class="bar-container">
+              <div class="bar before-bar" style="width:60px"></div>
+              <div class="bar after-bar" style="width:5px"></div>
+            </div>
+          </td>
+          <td class="good">0 (91 merged)</td>
+          <td><span class="delta">-100%</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Top 10 Scored Leads (ready for reps)</h2>
+    <table class="lead-table">
+      <thead>
+        <tr><th>#</th><th>Name</th><th>Company</th><th>Title</th><th>Score</th><th>Priority</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Gregory Brown</td><td>Titan Concrete Supply</td><td>CEO</td><td>95</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>2</td><td>Janet Ortiz</td><td>Apex Industrial Services</td><td>CEO</td><td>90</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>3</td><td>Kathleen Perez</td><td>Westside Auto Parts</td><td>CFO</td><td>86</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>4</td><td>Kenneth Ward</td><td>CorePoint Engineering</td><td>COO</td><td>85</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>5</td><td>Dorothy Watson</td><td>RedRock Mining</td><td>CTO</td><td>85</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>6</td><td>Richard Lewis</td><td>Pacific Steel Works</td><td>VP of Sales</td><td>83</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>7</td><td>Barbara Turner</td><td>Summit Energy Solutions</td><td>CEO</td><td>82</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>8</td><td>Maria Patel</td><td>Delta Fabrication</td><td>Plant Manager</td><td>80</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>9</td><td>Steven Clark</td><td>CryoBuild Systems</td><td>Director of Operations</td><td>78</td><td><span class="badge hot">Hot</span></td></tr>
+        <tr><td>10</td><td>Emily Johnson</td><td>NorthStar Drilling</td><td>Purchasing Manager</td><td>76</td><td><span class="badge hot">Hot</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Lead Score Distribution</h2>
+    <div class="summary-grid">
+      <div class="summary-card" style="border-left: 4px solid #dc2626;">
+        <div class="num" style="color:#dc2626">58</div>
+        <div class="desc"><strong>Hot (75+)</strong> — Call immediately. C-suite / VP at ICP companies with recent activity and complete profiles.</div>
+      </div>
+      <div class="summary-card" style="border-left: 4px solid #f59e0b;">
+        <div class="num" style="color:#f59e0b">285</div>
+        <div class="desc"><strong>Warm (55-74)</strong> — Add to nurture sequences. Good fit but may need enrichment or re-engagement.</div>
+      </div>
+      <div class="summary-card" style="border-left: 4px solid #3b82f6;">
+        <div class="num" style="color:#3b82f6">241</div>
+        <div class="desc"><strong>Cool (35-54)</strong> — Low priority. Monitor for changes in activity or role.</div>
+      </div>
+      <div class="summary-card" style="border-left: 4px solid #94a3b8;">
+        <div class="num" style="color:#94a3b8">14</div>
+        <div class="desc"><strong>Cold (&lt;35)</strong> — Archive or remove. Incomplete records with no recent engagement.</div>
+      </div>
+    </div>
+
+    <div class="next-steps">
+      <h2>Recommended Next Steps</h2>
+      <ol>
+        <li><strong>Immediate:</strong> Push cleaned + scored data back into Salesforce sandbox for rep validation.</li>
+        <li><strong>Week 1:</strong> Have reps work the Hot list. Track meetings booked vs. pre-cleanup baseline.</li>
+        <li><strong>Week 2:</strong> Set up automated enrichment for new leads entering the system.</li>
+        <li><strong>Month 1:</strong> Begin monthly retainer for ongoing quality monitoring and quarterly re-enrichment.</li>
+        <li><strong>Month 2:</strong> Refine scoring model based on actual conversion data from the Hot/Warm lists.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Prepared by [Your Name] &mdash; CRM Data Intelligence &mdash; Confidential
+  </div>
+
+</div>
+</body>
+</html>

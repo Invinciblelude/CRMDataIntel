@@ -1,0 +1,11 @@
+company,industry,website,address,contact_name,contact_title,phone,email,employees,crm_used,notes,source
+Example Dental Group,dental,,123 Main St,,Office Manager,,,20,dentrix,Search "dental office" on Google Maps in your area,google_maps
+Example Family Dentistry,dental,,456 Oak Ave,,Front Desk Manager,,,10,unknown,Search "dentist" on Google Maps,google_maps
+Example Orthodontics,dental,,789 Elm St,,Practice Manager,,,15,unknown,Search "orthodontist" on Google Maps,google_maps
+Example HVAC Services,hvac_plumbing_electrical,,100 Industrial Blvd,,Owner,,,30,unknown,Drive through industrial area,drive_by
+Example Plumbing Co,hvac_plumbing_electrical,,200 Commerce Dr,,Office Manager,,,25,unknown,Drive through industrial area,drive_by
+Example Electric Inc,hvac_plumbing_electrical,,300 Trade Way,,Sales Manager,,,40,unknown,Drive through industrial area,drive_by
+Example Staffing Agency,staffing,,400 Business Park Dr,,Branch Manager,,,20,unknown,Search "staffing agency" on Google Maps,google_maps
+Example Manufacturing,manufacturing,,500 Factory Rd,,VP Sales,,,100,salesforce,Drive through industrial area,drive_by
+Example Distribution Co,distribution,,600 Warehouse Ln,,General Manager,,,75,unknown,Drive through industrial area,drive_by
+Example Logistics LLC,logistics,,700 Freight Ave,,Operations Manager,,,50,unknown,Drive through industrial area,drive_by

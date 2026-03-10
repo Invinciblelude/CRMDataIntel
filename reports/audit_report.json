@@ -1,0 +1,239 @@
+{
+  "audit_date": "2026-03-09 03:18",
+  "source_file": "crm_cleaned.csv",
+  "total_records": 598,
+  "field_completeness": {
+    "record_id": {
+      "filled": 598,
+      "missing": 0,
+      "completeness_pct": 100.0
+    },
+    "first_name": {
+      "filled": 568,
+      "missing": 30,
+      "completeness_pct": 95.0
+    },
+    "last_name": {
+      "filled": 598,
+      "missing": 0,
+      "completeness_pct": 100.0
+    },
+    "email": {
+      "filled": 548,
+      "missing": 50,
+      "completeness_pct": 91.6
+    },
+    "phone": {
+      "filled": 538,
+      "missing": 60,
+      "completeness_pct": 90.0
+    },
+    "direct_dial": {
+      "filled": 490,
+      "missing": 108,
+      "completeness_pct": 81.9
+    },
+    "job_title": {
+      "filled": 598,
+      "missing": 0,
+      "completeness_pct": 100.0
+    },
+    "seniority_level": {
+      "filled": 593,
+      "missing": 5,
+      "completeness_pct": 99.2
+    },
+    "company": {
+      "filled": 598,
+      "missing": 0,
+      "completeness_pct": 100.0
+    },
+    "domain": {
+      "filled": 476,
+      "missing": 122,
+      "completeness_pct": 79.6
+    },
+    "industry": {
+      "filled": 570,
+      "missing": 28,
+      "completeness_pct": 95.3
+    },
+    "state": {
+      "filled": 561,
+      "missing": 37,
+      "completeness_pct": 93.8
+    },
+    "lifecycle_stage": {
+      "filled": 598,
+      "missing": 0,
+      "completeness_pct": 100.0
+    },
+    "lead_source": {
+      "filled": 564,
+      "missing": 34,
+      "completeness_pct": 94.3
+    },
+    "created_date": {
+      "filled": 598,
+      "missing": 0,
+      "completeness_pct": 100.0
+    },
+    "last_activity_date": {
+      "filled": 598,
+      "missing": 0,
+      "completeness_pct": 100.0
+    },
+    "annual_revenue": {
+      "filled": 303,
+      "missing": 295,
+      "completeness_pct": 50.7
+    },
+    "employees": {
+      "filled": 313,
+      "missing": 285,
+      "completeness_pct": 52.3
+    },
+    "linkedin_url": {
+      "filled": 337,
+      "missing": 261,
+      "completeness_pct": 56.4
+    },
+    "notes": {
+      "filled": 199,
+      "missing": 399,
+      "completeness_pct": 33.3
+    },
+    "owner": {
+      "filled": 488,
+      "missing": 110,
+      "completeness_pct": 81.6
+    }
+  },
+  "email_quality": {
+    "valid_emails": 548,
+    "valid_pct": 91.6,
+    "personal_emails": 25,
+    "personal_pct": 4.2,
+    "missing_or_invalid": 50
+  },
+  "phone_quality": {
+    "valid_phone": 538,
+    "valid_phone_pct": 90.0,
+    "valid_direct_dial": 490,
+    "valid_direct_dial_pct": 81.9
+  },
+  "duplicates": {
+    "email_duplicate_groups": 0,
+    "name_company_duplicate_groups": 0,
+    "total_records_in_duplicate_groups": 0,
+    "sample_email_dupes": {},
+    "sample_name_dupes": {}
+  },
+  "stale_records": {
+    "stale_records": 400,
+    "no_activity_date": 0,
+    "stale_pct": 66.9,
+    "cutoff_date": "2025-03-09"
+  },
+  "title_inconsistency": {
+    "unique_title_variants": 29,
+    "total_with_title": 598,
+    "top_20_titles": {
+      "Purchasing Manager": 43,
+      "Sales Manager": 42,
+      "VP of Sales": 39,
+      "CTO": 38,
+      "IT Director": 37,
+      "Plant Manager": 37,
+      "Maintenance Manager": 36,
+      "Director of Operations": 36,
+      "COO": 30,
+      "Marketing Manager": 29,
+      "HR Manager": 29,
+      "CFO": 27,
+      "Accountant": 26,
+      "CEO": 24,
+      "Owner": 21,
+      "Engineer": 20,
+      "Sales Representative": 12,
+      "Senior Accountant": 10,
+      "Director of Marketing": 8,
+      "Staff Engineer": 8
+    }
+  },
+  "industry_distribution": {
+    "Technology": 65,
+    "Logistics & Distribution": 58,
+    "Manufacturing": 58,
+    "Construction": 57,
+    "Healthcare": 39,
+    "Financial Services": 38,
+    "Automotive": 37,
+    "(empty)": 28,
+    "Energy": 27,
+    "Energy - Oil & Gas": 18,
+    "Waste Management": 12,
+    "Electrical": 12,
+    "Engineering": 11,
+    "Security Services": 11,
+    "Education": 11,
+    "Wholesale & Distribution": 10,
+    "Industrial Equipment": 10,
+    "Aerospace & Defense": 10,
+    "Real Estate": 9,
+    "Chemical": 9
+  },
+  "lifecycle_distribution": {
+    "Opportunity": 114,
+    "Evangelist": 106,
+    "Lead": 103,
+    "Customer": 94,
+    "MQL": 91,
+    "SQL": 90
+  },
+  "lead_source_distribution": {
+    "Website": 139,
+    "Trade Show": 88,
+    "Cold Call": 80,
+    "Event": 51,
+    "Outbound": 48,
+    "Partner": 45,
+    "Inbound": 45,
+    "LinkedIn": 39,
+    "(empty)": 34,
+    "Referral": 29
+  },
+  "state_distribution": {
+    "OH": 38,
+    "(empty)": 37,
+    "IL": 36,
+    "WI": 36,
+    "IN": 34,
+    "GA": 34,
+    "MI": 33,
+    "MN": 31,
+    "OR": 30,
+    "MO": 29,
+    "NV": 29,
+    "NY": 28,
+    "AZ": 27,
+    "TX": 25,
+    "FL": 25,
+    "WA": 25,
+    "NC": 24,
+    "PA": 23,
+    "CA": 19,
+    "TN": 18,
+    "CO": 17
+  },
+  "owner_distribution": {
+    "Rep A": 135,
+    "Rep D": 122,
+    "Rep C": 116,
+    "Rep B": 115,
+    "(unassigned)": 110
+  },
+  "critical_gaps": {},
+  "data_health_score": 90.0,
+  "data_health_grade": "A"
+}

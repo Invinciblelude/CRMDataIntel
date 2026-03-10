@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Data Intelligence Services</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a2e;
+    background: #fff;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { font-size: 11pt; }
+    .page { box-shadow: none; padding: 0.5in; max-width: 100%; }
+    .no-print { display: none; }
+  }
+
+  .page {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 48px 56px;
+    background: #fff;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #0f172a;
+  }
+
+  .brand h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+  }
+
+  .brand p {
+    font-size: 14px;
+    color: #475569;
+    margin-top: 4px;
+  }
+
+  .contact-info {
+    text-align: right;
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.8;
+  }
+
+  .contact-info strong { color: #0f172a; }
+
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #fff;
+    padding: 28px 32px;
+    border-radius: 12px;
+    margin-bottom: 28px;
+  }
+
+  .hero h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    color: #cbd5e1;
+    line-height: 1.7;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .stat-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-card .number {
+    font-size: 32px;
+    font-weight: 800;
+    color: #dc2626;
+  }
+
+  .stat-card .label {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .service-card {
+    padding: 18px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    border-left: 4px solid #2563eb;
+  }
+
+  .service-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+
+  .service-card p {
+    font-size: 12.5px;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .process-section {
+    margin-bottom: 28px;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .step {
+    text-align: center;
+    padding: 14px 8px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+  }
+
+  .step .num {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    background: #0f172a;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .step .step-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #0f172a;
+    display: block;
+  }
+
+  .step .step-time {
+    font-size: 10px;
+    color: #94a3b8;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .outcomes li, .pilot-details li {
+    font-size: 13px;
+    color: #334155;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .outcomes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #16a34a;
+    font-weight: 700;
+  }
+
+  .pilot-details li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #2563eb;
+    font-weight: 700;
+  }
+
+  .cta-bar {
+    background: #0f172a;
+    color: #fff;
+    padding: 20px 28px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cta-bar p {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .cta-bar .cta-contact {
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .cta-btn {
+    background: #2563eb;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 11px;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="brand">
+      <h1>CRM Data Intelligence</h1>
+      <p>AI-Powered Data Quality &amp; Enrichment for Salesforce Teams</p>
+    </div>
+    <div class="contact-info">
+      <strong>[Your Name]</strong><br>
+      [your@email.com]<br>
+      [your phone]<br>
+      [yourwebsite.com]
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>Your reps don't have a selling problem. They have a data problem.</h2>
+    <p>Dirty CRM data costs B2B companies 10-25% of revenue through missed leads, bad routing,
+       failed outreach, and broken AI tools. We fix it — and keep it fixed — so your team
+       sells from reality, not garbage.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="number">76%</div>
+      <div class="label">of companies have mostly inaccurate CRM data <span style="font-size:9px;display:block;margin-top:4px;">(Validity 2025 Report)</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="number">16</div>
+      <div class="label">sales deals lost per quarter due to bad data <span style="font-size:9px;display:block;margin-top:4px;">(Validity 2025 Report)</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$12.9M</div>
+      <div class="label">avg. annual cost of bad data per company <span style="font-size:9px;display:block;margin-top:4px;">(IBM / Gartner)</span></div>
+    </div>
+  </div>
+
+  <h3>What We Do</h3>
+  <div class="services-grid">
+    <div class="service-card">
+      <h4>Data Audit &amp; Health Report</h4>
+      <p>We export your Salesforce data and measure exactly what's broken: duplicates, missing fields,
+         stale records, inconsistent values. You get a scored report with revenue impact.</p>
+    </div>
+    <div class="service-card">
+      <h4>Cleanse &amp; Deduplicate</h4>
+      <p>We fix formatting, merge duplicates, standardize fields, and remove dead records.
+         Your CRM becomes a single source of truth your reps actually trust.</p>
+    </div>
+    <div class="service-card">
+      <h4>Enrich &amp; Normalize</h4>
+      <p>We fill in missing emails, direct dials, titles, company data, and firmographics
+         using AI + best-in-class data providers. Every record becomes a full profile.</p>
+    </div>
+    <div class="service-card">
+      <h4>AI Lead Scoring &amp; Segmentation</h4>
+      <p>We build scoring models on your enriched data so reps know exactly who to call first,
+         and marketing knows which segments convert. No guessing.</p>
+    </div>
+  </div>
+
+  <div class="process-section">
+    <h3>Our 5-Step Process</h3>
+    <div class="process-steps">
+      <div class="step">
+        <div class="num">1</div>
+        <span class="step-title">Audit</span>
+        <span class="step-time">Week 1</span>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <span class="step-title">Cleanse</span>
+        <span class="step-time">Week 1-2</span>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <span class="step-title">Enrich</span>
+        <span class="step-time">Week 2-3</span>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <span class="step-title">Score</span>
+        <span class="step-time">Week 3</span>
+      </div>
+      <div class="step">
+        <div class="num">5</div>
+        <span class="step-title">Monitor</span>
+        <span class="step-time">Ongoing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Outcomes You Get</h3>
+      <ul class="outcomes">
+        <li>90%+ field completeness on key contact fields</li>
+        <li>Duplicate records reduced by 60-80%</li>
+        <li>Standardized titles, industries, and territories</li>
+        <li>AI-ready data for lead scoring and personalization</li>
+        <li>Reps spend time selling, not researching</li>
+        <li>Forecasting accuracy improves immediately</li>
+      </ul>
+    </div>
+    <div>
+      <h3>4-Week Pilot</h3>
+      <ul class="pilot-details">
+        <li>Full audit of your Salesforce leads, contacts &amp; accounts</li>
+        <li>Clean, deduplicate, and normalize your existing data</li>
+        <li>Enrich missing fields using AI + data providers</li>
+        <li>Deliver a scored, prioritized lead list</li>
+        <li>Data Health Report with before/after metrics</li>
+        <li>Written SOP for your team to maintain quality</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <div>
+      <p>Ready to see what's hiding in your CRM?</p>
+      <span class="cta-contact">Free 30-minute data health assessment</span>
+    </div>
+    <a href="#" class="cta-btn">Book a Call</a>
+  </div>
+
+  <p class="footer-note">All data handled under NDA. No changes made to your live CRM without approval.</p>
+
+</div>
+</body>
+</html>
